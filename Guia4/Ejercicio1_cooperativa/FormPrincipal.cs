@@ -18,17 +18,21 @@ namespace Ejercicio1
         {
             string nombre = tbCoperativa.Text;
             cooperativa = new Cooperativa(nombre);
-            
+
+            #region limpiando controles
             btnIniciarCooperativa.Enabled = false;
             tbCoperativa.Enabled = false;
             gbAltaCliente.Enabled = true;
-       }
+            #endregion
+        }
 
         private void btnSeleccionarCliente_Click(object sender, EventArgs e)
         {
+            #region limpiando controles
             lbDescripcion.Text = "";
             gbConsumos.Enabled = false;
             gbCargaConsumos.Enabled = false;
+            #endregion
 
             if (string.IsNullOrEmpty(tbNroServicio.Text.Trim())==false)
             {
@@ -45,6 +49,27 @@ namespace Ejercicio1
                 {
                     MessageBox.Show("Cliente no encontrado!");
                 }
+            }
+        }
+
+        private void btnAgregarCliente_Click(object sender, EventArgs e)
+        {
+            FormCliente fCliente = new FormCliente();
+
+            if (fCliente.ShowDialog() == DialogResult.OK)
+            {
+                int servicio = Convert.ToInt32(fCliente.tbNumeroServicio.Text);
+
+                string nombre = fCliente.tbNombre.Text;
+                int dni = Convert.ToInt32(fCliente.tbDNI.Text);
+                string direccion = fCliente.tbDireccion.Text;
+
+                Medidor medidor = new Medidor();
+                Cliente nuevo = cooperativa.AgregarCliente(servicio, dni, nombre, direccion, medidor);
+
+                MessageBox.Show($"Servicio nro: {nuevo.NroServicio}. Cliente nuevo!");
+
+                gbClientes.Enabled = true;
             }
         }
 
@@ -84,25 +109,6 @@ namespace Ejercicio1
             fResultado.Dispose();
         }
 
-        private void btnAgregarCliente_Click(object sender, EventArgs e)
-        {
-            FormCliente fCliente = new FormCliente();
-
-            if (fCliente.ShowDialog() == DialogResult.OK)
-            {
-                int servicio= Convert.ToInt32(fCliente.tbNumeroServicio.Text);
-
-                string nombre = fCliente.tbNombre.Text;
-                int dni = Convert.ToInt32( fCliente.tbDNI.Text) ;
-                string direccion = fCliente.tbDireccion.Text;
-                    
-                Medidor medidor=new Medidor();
-                Cliente nuevo=cooperativa.AgregarCliente(servicio, dni, nombre, direccion, medidor);
-
-                MessageBox.Show($"Servicio nro: {nuevo.NroServicio}. Cliente nuevo!");
-
-                gbClientes.Enabled = true;
-            }
-        }
+       
     }
 }
