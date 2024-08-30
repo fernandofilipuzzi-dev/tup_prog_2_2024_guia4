@@ -56,11 +56,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FormCliente.cs">
+    <Compile Include="FormDatosCliente.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormCliente.Designer.cs">
-      <DependentUpon>FormCliente.cs</DependentUpon>
+    <Compile Include="FormDatosCliente.Designer.cs">
+      <DependentUpon>FormDatosCliente.cs</DependentUpon>
     </Compile>
     <Compile Include="FormPrincipal.cs">
       <SubType>Form</SubType>
@@ -72,8 +72,8 @@
     <Compile Include="Models\Medidor.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="FormCliente.resx">
-      <DependentUpon>FormCliente.cs</DependentUpon>
+    <EmbeddedResource Include="FormDatosCliente.resx">
+      <DependentUpon>FormDatosCliente.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormPrincipal.resx">
       <DependentUpon>FormPrincipal.cs</DependentUpon>
@@ -83,8 +83,8 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="FormResultados.resx">
-      <DependentUpon>FormResultados.cs</DependentUpon>
+    <EmbeddedResource Include="FormVer.resx">
+      <DependentUpon>FormVer.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -103,11 +103,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
     <Compile Include="Models\Cooperativa.cs" />
-    <Compile Include="FormResultados.cs">
+    <Compile Include="FormVer.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FormResultados.Designer.cs">
-      <DependentUpon>FormResultados.cs</DependentUpon>
+    <Compile Include="FormVer.Designer.cs">
+      <DependentUpon>FormVer.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -9,16 +9,11 @@ using System.Windows.Forms;
 
 namespace Ejercicio1
 {
-    public partial class FormResultados : Form
+    public partial class FormDatosCliente : Form
     {
-        public FormResultados()
+        public FormDatosCliente()
         {
             InitializeComponent();
-        }
-
-        private void btnPrueba_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

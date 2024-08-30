@@ -5,6 +5,7 @@ namespace Ejercicio1.Models
 {
     class Cooperativa
     {
+        static int GEN_CLIENTE;
       public string Nombre{get; private set;}
       public ArrayList clientes =new ArrayList();
 
@@ -13,10 +14,10 @@ namespace Ejercicio1.Models
           Nombre = nombre;
       }
         
-      public Cliente AgregarCliente(int servicio, int dni, string nombre, 
-                      string direccion, Medidor medidor)
+      public Cliente AgregarCliente(int dni, string nombre, string direccion, Medidor medidor)
       {
-          Cliente nuevo = new Cliente(servicio, dni, nombre, direccion, medidor);
+            //Medidor= medidor.GEN_CLIENTE;
+          Cliente nuevo = new Cliente(dni, nombre, direccion, medidor);
           clientes.Add( nuevo) ;
           return nuevo;
       }
@@ -26,6 +27,7 @@ namespace Ejercicio1.Models
           Cliente buscado = null;
 
           clientes.Sort();
+
           //algoritmo de busqueda binaria
           int n = clientes.Count-1;
           int clave = nroServicio;
@@ -35,13 +37,13 @@ namespace Ejercicio1.Models
           {
               centro =(inf+sup)/2;
 
-              if (((Cliente)clientes[centro]).NroServicio == clave)
+              if (((Cliente)clientes[centro]).Medidor.NumeroServicio == clave)
               {
                   pos = centro;
               }
               else
               {
-                  if (clave > ((Cliente)clientes[centro]).NroServicio)
+                  if (clave > ((Cliente)clientes[centro]).Medidor.NumeroServicio)
                   {
                       inf = centro + 1;
                   }

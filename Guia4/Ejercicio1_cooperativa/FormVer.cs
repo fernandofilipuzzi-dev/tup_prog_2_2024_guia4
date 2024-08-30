@@ -9,11 +9,16 @@ using System.Windows.Forms;
 
 namespace Ejercicio1
 {
-    public partial class FormCliente : Form
+    public partial class FormVer : Form
     {
-        public FormCliente()
+        public FormVer()
         {
             InitializeComponent();
+        }
+
+        private void btnPrueba_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

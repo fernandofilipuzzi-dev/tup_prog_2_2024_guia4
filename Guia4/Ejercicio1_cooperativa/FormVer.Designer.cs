@@ -1,6 +1,6 @@
 ﻿namespace Ejercicio1
 {
-    partial class FormResultados
+    partial class FormVer
     {
         /// <summary>
         /// Variable del diseñador requerida.

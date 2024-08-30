@@ -54,7 +54,7 @@ namespace Ejercicio1
 
         private void btnAgregarCliente_Click(object sender, EventArgs e)
         {
-            FormCliente fCliente = new FormCliente();
+            FormDatosCliente fCliente = new FormDatosCliente();
 
             if (fCliente.ShowDialog() == DialogResult.OK)
             {
@@ -64,10 +64,10 @@ namespace Ejercicio1
                 int dni = Convert.ToInt32(fCliente.tbDNI.Text);
                 string direccion = fCliente.tbDireccion.Text;
 
-                Medidor medidor = new Medidor();
-                Cliente nuevo = cooperativa.AgregarCliente(servicio, dni, nombre, direccion, medidor);
+                Medidor medidor = new Medidor(servicio);
+                Cliente nuevo = cooperativa.AgregarCliente(dni, nombre, direccion, medidor);
 
-                MessageBox.Show($"Servicio nro: {nuevo.NroServicio}. Cliente nuevo!");
+                MessageBox.Show($"Servicio nro: {nuevo.Medidor.NumeroServicio}. Cliente nuevo!");
 
                 gbClientes.Enabled = true;
             }
@@ -81,25 +81,27 @@ namespace Ejercicio1
         private void btnRegistrarConsumo_Click(object sender, EventArgs e)
         {
             double medicionActual = Convert.ToDouble(tbLecturaMedidor.Text);
-            clienteSeleccion.RegistrarConsumo(medicionActual);
 
-            lbDescripcionPeriodo.Text = $"Último periodo: {clienteSeleccion.PeriodoActual}";
+
+            clienteSeleccion.Medidor.RegistrarConsumo(medicionActual);
+
+            lbDescripcionPeriodo.Text = $"Último periodo: {clienteSeleccion.Medidor.PeriodoActual}";
 
             tbLecturaMedidor.Clear();
         }
 
         private void btnVerConsumo_Click(object sender, EventArgs e)
         {
-            FormResultados fResultado = new FormResultados();
+            FormVer fResultado = new FormVer();
             fResultado.lbResultados.Items.Clear();
             
-            fResultado.lbResultados.Items.Add(  $"Número de Servicio {clienteSeleccion.NroServicio,-10}");
+            fResultado.lbResultados.Items.Add(  $"Número de Servicio {clienteSeleccion.Medidor.NumeroServicio,-10}");
 
-            for (int n = 0; n < clienteSeleccion.CantidadConsumos; n++)
+            for (int n = 0; n < clienteSeleccion.Medidor.CantidadConsumos; n++)
             {
                 //imprimo el historico de este cliente
-                string consumo = clienteSeleccion.LeerConsumo(n).ToString("0.00");
-                int periodo=(n + clienteSeleccion.PeriodoActual) % 6;
+                string consumo = clienteSeleccion.Medidor.LeerConsumo(n).ToString("0.00");
+                int periodo=(n + clienteSeleccion.Medidor.PeriodoActual) % 6;
 
                 fResultado.lbResultados.Items.Add( $"{periodo,-10} {consumo,10}");
             }
@@ -108,7 +110,5 @@ namespace Ejercicio1
 
             fResultado.Dispose();
         }
-
-       
     }
 }
